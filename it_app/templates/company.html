@@ -76,7 +76,13 @@
 		   <div class="card" style="width: 18rem;">
 		  <div class="card-body">
 			<h5 class="card-title">Company-Wide IT Stats</h5>
-			<p> TODO: STATS GO HERE </p>
+			{% if template_data['stats']| length == 0 %}
+			 Error: No Stats to show
+			{% else %}
+			 <p> Number of Employees: {{ template_data['stats'][0] }}</p>
+			 <p> Number of Devices: {{ template_data['stats'][1] }}</p>
+			 <p> Number of Issued Devices: {{ template_data['stats'][2] }}</p>
+			{% endif %}
 
 			<!-- Button trigger modal for add/remove employee-->
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">

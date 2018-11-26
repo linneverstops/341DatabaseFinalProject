@@ -112,6 +112,15 @@ def company_view():
 	"
     employees = sql_query(sql)
     template_data['employees'] = employees 
+
+
+    # Get company wide stats
+    sql = "select count(1) from Employee;"
+    num_emp = int(sql_query(sql)[0][0])
+    num_devices = int(sql_query("select count(1) from Device")[0][0])
+    outstanding_devices = int(sql_query("select count(1) from issued_to where returned_date is NULL")[0][0])
+    template_data['stats'] = [num_emp,num_devices,outstanding_devices]
+    
     print(template_data)
     return render_template('company.html', template_data=template_data, form=form) 
 
