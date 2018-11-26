@@ -40,6 +40,7 @@
 		{% if template_data['employees']|length == 0 %}
 		<p> No employees to show</p>
 		{% else %}
+		<form action="." method=post>
 				<table class="table">
 				  <thead>
 					<!-- TODO: modify to include other info -->
@@ -48,6 +49,7 @@
 					  <th scope="col">Start Date</th>
 					  <th scope="col">End Date</th>
 					  <th scope="col">Devices Outstanding</th>
+					  <th scope="col"></th>
 					</tr>
 				  </thead>
 				  <tbody>
@@ -58,10 +60,12 @@
 					  <td>{{ emp[3] }}</td>
 					  <td>{{ emp[4] }}</td>
 					  <td>{{ emp[5] }}</td>
+					  <td><button name="delete-employee" value="{{ emp[0] }}">Remove</button>
 					</tr>
 					{% endfor %}
 				  </tbody>
 				</table>
+		</form>
 		{% endif %}
               </div>
             </div> 
@@ -76,9 +80,8 @@
 
 			<!-- Button trigger modal for add/remove employee-->
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-			Add/Remove Employee
+			Add Employee
 			</button>
-
 		  </div>
 		</div> 
         
@@ -92,17 +95,24 @@
 	  <div class="modal-dialog" role="document">
 		<div class="modal-content">
 		  <div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+			<h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			  <span aria-hidden="true">&times;</span>
 			</button>
 		  </div>
 		  <div class="modal-body">
-			...
+		<form action="." method="post">	
+		 {{ form.csrf_token }}
+		  Please enter dates in YEAR-MONTH-DAY format where YEAR is the full four digit year.
+		 <h5>{{ form.name.label }}</h5>
+		 <div style="padding-left 20px;">{{ form.name(size=20) }}</div>
+		 <h5>{{ form.start_date.label }}</h5>
+		 <div style="padding-left 20px;">{{ form.start_date(size=20) }}</div>
+		 <h5>{{ form.end_date.label }}</h5>
+		 <div style="padding-left 20px;">{{ form.end_date(size=20) }}</div>
+		 <input type="submit" name="add-employee" value="Add Employee">
 		  </div>
 		  <div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary">Save changes</button>
 		  </div>
 		</div>
 	  </div>

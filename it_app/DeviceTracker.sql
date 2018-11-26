@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `Device`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `Device` (
-  `device_id` int(11) NOT NULL,
+  `device_id` int(11) NOT NULL AUTO_INCREMENT,
   `device_type` varchar(30) DEFAULT NULL,
   `make` varchar(30) DEFAULT NULL,
   `model` varchar(30) DEFAULT NULL,
@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS `Employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `Employee` (
-  `employ_id` int(11) NOT NULL,
+  `employ_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) DEFAULT NULL,
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
