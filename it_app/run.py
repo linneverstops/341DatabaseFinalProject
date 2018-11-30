@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect
 import mysql.connector
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField,DateField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Optional
 from datetime import datetime
 
 
@@ -23,7 +23,7 @@ class NewEmployeeForm(FlaskForm):
     """
     name = StringField('Name',validators=[DataRequired()])
     start_date = DateField('Start Date',validators=[DataRequired()])
-    end_date = DateField('End Date')
+    end_date = DateField('End Date',validators=[Optional()])
 
 
 # Create a function for fetching data from the database.
@@ -90,9 +90,9 @@ def company_view():
         sql = 'INSERT INTO Employee (name,start_date,end_date) Values('
         sql += "'"+str(form.name.data)+"',"
         sql += "'"+str(form.start_date.data)+"',"
-        try:
+        if form.end_date.data:
 	        sql += "'"+str(form.end_date.data)+"'"
-        except:
+        else:
             sql += "NULL"
         sql += ");"
         sql_execute(sql)

@@ -1,0 +1,18 @@
+Inital Setup:
+
+	1. ./setup.sh
+	2. Setup MYSQL database
+		a. We're assuming that you have the same permission as we do i.e. we only have acess to the default databse team3 and cannot create new database users.
+		   To setup the databse please run the following commands in the mysql repl:
+
+		   use team3;
+                   source DeviceTracker.sql;
+	
+		b. Once this is done. Please edit the config.ini file as follows:
+			I. For the host, please enter your caseid and/or the username of
+			   of the MYSQL user you'll be acessing the database with.
+	3. Exit the MYSQL repl and run source venv/bin/activate
+	4. python run.py
+
+	** The server should now be running at 127.3.4.1:34100 **
+
