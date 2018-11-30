@@ -38,7 +38,7 @@ CREATE TABLE `Device` (
 
 LOCK TABLES `Device` WRITE;
 /*!40000 ALTER TABLE `Device` DISABLE KEYS */;
-INSERT INTO `Device` VALUES (1,'Laptop','Apple','Macbook','10010','2018-12-31'),(2,'Mouse','Apple','MacMouse','10020','2018-12-31'),(3,'Earpods','Apple','Airpods','10030','2018-12-31'),(4,'Laptop','Apple','Macbook','10040','2020-01-01'), (5,'Printer','HP','LaserJet','2020-02-02');
+INSERT INTO `Device` VALUES (1,'Laptop','Apple','Macbook','10010','2018-12-31'),(2,'Mouse','Apple','MacMouse','10020','2018-12-31'),(3,'Earpods','Apple','Airpods','10030','2018-12-31'),(4,'Laptop','Apple','Macbook','10040','2020-01-01'), (5,'Printer','HP','LaserJet','1111','2020-02-02');
 /*!40000 ALTER TABLE `Device` ENABLE KEYS */;
 UNLOCK TABLES;
 

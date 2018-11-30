@@ -59,10 +59,6 @@ def employee_view(emp_id):
         return "ERROR 404: Employee ID Not found in database."
     template_data = {}
     template_data['emp_data'] = employee
-    # Get information about devices that have not been issued to any employee
-    sql = str(open('unissued_devices.sql','r').read())
-    devices = sql_query(sql)
-    template_data['u_devices'] = devices
     if 'issue-device' in request.form:
         device_id = int(request.form['issue-device'])
         sql = "INSERT INTO issued_to VALUE("
@@ -74,10 +70,14 @@ def employee_view(emp_id):
         sql += "NULL);"
         sql_execute(sql)
     # Get information about the devices issued to this employee
-    sql = "select d.* from Device d , issued_to it where d.device_id=it.device_id and it.employ_id="+str(emp_id)+";"
+    sql = "select d.* from Device d , issued_to it where d.device_id=it.device_id and it.employ_id="+str(emp_id)+" and it.returned_date is NULL;"
     devices = sql_query(sql)
     template_data['devices'] = devices
 
+    # Get information about devices that have not been issued to any employee
+    sql = str(open('queries/unissued_devices.sql','r').read())
+    devices = sql_query(sql)
+    template_data['u_devices'] = devices
     return render_template('employee.html',template_data=template_data) 
 	
 
@@ -107,6 +107,8 @@ def company_view():
 		FROM\
 		Employee \
 		left join issued_to  on Employee.employ_id=issued_to.employ_id\
+                WHERE\
+                returned_date is NULL\
 		group by\
 		Employee.employ_id;\
 	"
@@ -117,9 +119,9 @@ def company_view():
     # Get company wide stats
     sql = "select count(1) from Employee;"
     num_emp = int(sql_query(sql)[0][0])
-    num_devices = int(sql_query("select count(1) from Device")[0][0])
+    #num_devices = int(sql_query("select count(1) from Device")[0][0])
     outstanding_devices = int(sql_query("select count(1) from issued_to where returned_date is NULL")[0][0])
-    template_data['stats'] = [num_emp,num_devices,outstanding_devices]
+    template_data['stats'] = [num_emp,outstanding_devices]
     
     print(template_data)
     return render_template('company.html', template_data=template_data, form=form) 

@@ -19,7 +19,7 @@
 
 	<!-- NAV BAR -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	  <a class="navbar-brand" href="#">IT Asset Information System</a>
+	  <a class="navbar-brand" href="/">IT Asset Information System</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	  </button>
@@ -80,8 +80,7 @@
 			 Error: No Stats to show
 			{% else %}
 			 <p> Number of Employees: {{ template_data['stats'][0] }}</p>
-			 <p> Number of Devices: {{ template_data['stats'][1] }}</p>
-			 <p> Number of Issued Devices: {{ template_data['stats'][2] }}</p>
+			 <p> Number of Outstanding Devices: {{ template_data['stats'][1] }}</p>
 			{% endif %}
 
 			<!-- Button trigger modal for add/remove employee-->
