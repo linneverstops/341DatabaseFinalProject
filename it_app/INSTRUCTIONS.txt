@@ -10,9 +10,23 @@ Inital Setup:
 	
 		b. Once this is done. Please edit the config.ini file as follows:
 			I. For the host, please enter your caseid and/or the username of
-			   of the MYSQL user you'll be acessing the database with.
+			   of the MYSQL user you'll be using.
 	3. Exit the MYSQL repl and run source venv/bin/activate
 	4. python run.py
 
 	** The server should now be running at 127.3.4.1:34100 **
+
+Viewing on your local machine:
+	
+	1. ssh to the class server with port forwarding :
+		
+		ssh -L 34100:124.3.4.1:34100 caseid@eecslab-9.case.edu
+	2. Run through the inital setup described above
+	3. Go to localhost:34100 on your machine 
+
+	** You should see the webapp running **
+
+		
+	
+	
 
